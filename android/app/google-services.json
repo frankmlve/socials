@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "782646741658",
+    "firebase_url": "https://fldeveloper-6e383.firebaseio.com",
+    "project_id": "fldeveloper-6e383",
+    "storage_bucket": "fldeveloper-6e383.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782646741658:android:fd1804b7c4bf6e73af6d23",
+        "android_client_info": {
+          "package_name": "com.socials.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782646741658-nhuttoui81se2e4pns8su5bv1c306og4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTiVug8Z2tR4Fw8xaEYIksMDbCI_Hnkz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782646741658-nhuttoui81se2e4pns8su5bv1c306og4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

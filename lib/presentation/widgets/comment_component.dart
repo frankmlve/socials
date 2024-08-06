@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socials/presentation/manager/auth/auth.dart';
 import 'package:socials/presentation/widgets/avatar.dart';
-import 'package:socials/data/model/comment.dart';
+import 'package:socials/domain/model/comment.dart';
 
 class CommentComponent extends StatelessWidget {
   final Comment comment;

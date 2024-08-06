@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/domain/repository/user_repository.dart';
 import 'package:socials/presentation/manager/auth/auth.dart';
 

@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:socials/data/model/assets.dart';
-import 'package:socials/data/model/post.dart';
+import 'package:socials/domain/model/assets.dart';
+import 'package:socials/domain/model/post.dart';
 import 'package:socials/presentation/widgets/custom_video_player.dart';
 
 class CustomCarousel extends StatefulWidget {

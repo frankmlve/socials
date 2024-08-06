@@ -1,7 +1,7 @@
-import 'package:socials/data/model/comment.dart';
-import 'package:socials/data/model/like.dart';
-import 'package:socials/data/model/post.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/comment.dart';
+import 'package:socials/domain/model/like.dart';
+import 'package:socials/domain/model/post.dart';
+import 'package:socials/domain/model/user.dart';
 
 class PostCard {
   final Post post;

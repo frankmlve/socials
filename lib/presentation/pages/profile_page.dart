@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/data/providers/current_user_provider.dart';
 import 'package:socials/data/providers/posts_provider.dart';
 import 'package:socials/domain/repository/follow_repository.dart';
@@ -9,7 +9,7 @@ import 'package:socials/domain/repository/user_repository.dart';
 import 'package:socials/presentation/pages/post_page.dart';
 import 'package:socials/presentation/widgets/proflle_card_widget.dart';
 
-import '../../data/model/post.dart';
+import '../../domain/model/post.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   final String? userId;

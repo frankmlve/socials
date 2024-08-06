@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/data/providers/current_user_provider.dart';
 import 'package:socials/domain/repository/follow_repository.dart';
 import 'package:socials/domain/repository/storage_repository.dart';

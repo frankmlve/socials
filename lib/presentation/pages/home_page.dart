@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/comment.dart';
+import 'package:socials/domain/model/post.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/data/providers/current_user_provider.dart';
 import 'package:socials/domain/repository/follow_repository.dart';
 import 'package:socials/domain/repository/post_repository.dart';
@@ -51,13 +53,12 @@ class _HomePageState extends ConsumerState<HomePage> {
             child: ListView(
               children: [
                 for (PostCard postCard in usersFollowedPost)
-                  buildPostItem(postCard, fetchUsersFollowedPosts)
+                  buildPostItem(postCard)
               ],
             )));
   }
-}
 
-buildPostItem(PostCard postCard, Function() fetchUsersFollowedPosts) {
+buildPostItem(PostCard postCard) {
   return Card(
     elevation: 0,
     shape: RoundedRectangleBorder(
@@ -77,4 +78,5 @@ buildPostItem(PostCard postCard, Function() fetchUsersFollowedPosts) {
       ),
     ),
   );
+}
 }

@@ -4,10 +4,10 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:socials/data/model/comment.dart';
-import 'package:socials/data/model/like.dart';
-import 'package:socials/data/model/post.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/comment.dart';
+import 'package:socials/domain/model/like.dart';
+import 'package:socials/domain/model/post.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/domain/repository/user_repository.dart';
 import 'package:socials/presentation/manager/auth/auth.dart';
 import 'package:socials/presentation/model/new_comment.dart';

@@ -1,4 +1,4 @@
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/user.dart';
 
 class Like {
   String id;

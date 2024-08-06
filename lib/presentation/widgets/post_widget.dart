@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:socials/data/model/comment.dart';
-import 'package:socials/data/model/like.dart';
-import 'package:socials/data/model/post.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/comment.dart';
+import 'package:socials/domain/model/like.dart';
+import 'package:socials/domain/model/post.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/data/providers/current_user_provider.dart';
 import 'package:socials/data/providers/posts_provider.dart';
 import 'package:socials/domain/repository/post_repository.dart';
@@ -45,11 +47,14 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
   bool isComment = false;
   late FocusNode typeCommentNode;
   bool isLiked = false;
-
+  List<Comment> comments = [];
   @override
   void initState() {
     super.initState();
     typeCommentNode = FocusNode();
+    setState(() {
+      comments = widget.comments;
+    });
   }
 
   @override
@@ -67,7 +72,6 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
     final PostRepository postRepository = PostRepository();
     final UserRepository userRepository = UserRepository();
 
-
     List<MenuItem> menuList = [
       MenuItem(
           title: 'Delete Post',
@@ -84,9 +88,8 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
     bool userLikePost() {
       if (widget.likes != null && widget.likes!.isNotEmpty) {
         setState(() {
-          isLiked =
-              widget.likes!.any((like) => like.user.id == Auth().currentUserId());
-
+          isLiked = widget.likes!
+              .any((like) => like.user.id == Auth().currentUserId());
         });
         return isLiked;
       }
@@ -107,9 +110,6 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
                 widget.post, comment, widget.user.id);
             captionController.clear();
             widget.onCommentPost();
-            setState(() {
-              isComment = false;
-            });
             primaryFocus!.unfocus(disposition: UnfocusDisposition.scope);
           },
           loading: () {},
@@ -144,24 +144,27 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
 
     ListTile buildNewCommentInput(
         TextEditingController captionController, Function() commentPost) {
-      return  ListTile(
-            subtitle: TextField(
-              autofocus: false,
-              controller: captionController,
-              style: TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                hintText: 'Add a comment',
-                hintStyle: TextStyle(color: Colors.white),
-              ),
-            ),
-            trailing: TextButton(
-              onPressed: () => commentPost(),
-              child: Icon(Icons.send, color: Colors.white,),
-            ),
-          );
+      return ListTile(
+        subtitle: TextField(
+          autofocus: false,
+          controller: captionController,
+          style: TextStyle(color: Colors.white),
+          decoration: const InputDecoration(
+            hintText: 'Add a comment',
+            hintStyle: TextStyle(color: Colors.white),
+          ),
+        ),
+        trailing: TextButton(
+          onPressed: () => commentPost(),
+          child: Icon(
+            Icons.send,
+            color: Colors.white,
+          ),
+        ),
+      );
     }
 
-    listComments(List<Comment>? comments) {
+    listComments() {
       return showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -184,7 +187,7 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
                     ),
                   ),
                   Divider(),
-                  comments == null || comments.isEmpty
+                  comments.isEmpty
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -203,17 +206,21 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
                                 itemCount: comments.length,
-                                itemBuilder: (context, index) => Column(
-                                      children: [
-                                        CommentComponent(
-                                          comment: comments[index],
-                                          onDeleteComment: deleteComment,
-                                          textStyle: TextStyle(color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15),
-                                        )
-                                      ],
-                                    )),
+                                itemBuilder: (context, index) {
+                                  Comment comment = comments[index];
+                                  return Column(
+                                    children: [
+                                      CommentComponent(
+                                        comment: comment,
+                                        onDeleteComment: deleteComment,
+                                        textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
+                                      )
+                                    ],
+                                  );
+                                }),
                           ),
                         ),
                   buildNewCommentInput(captionController, commentPost),
@@ -221,11 +228,8 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
               )));
     }
 
-    Column buildActionsButtons(
-        Function() unlikePost,
-        Function() likePost,
-        Function() userLikePost,
-        Function() showCommentInput) {
+    Column buildActionsButtons(Function() unlikePost, Function() likePost,
+        Function() userLikePost, Function() showCommentInput) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -251,7 +255,7 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
                     icon: Icon(Icons.comment),
                     onPressed: () {
                       showCommentInput();
-                      listComments(widget.comments);
+                      listComments();
                     }),
                 Text(widget.comments.length.toString()),
               ],
@@ -310,8 +314,7 @@ class _PostWidgetState extends ConsumerState<PostWidget> {
         height: 15,
       ),
       CustomCarousel(post: widget.post, isFromNetwork: true),
-      buildActionsButtons( unlikePost, likePost, userLikePost, showCommentInput),
-      // buildNewCommentInput(captionController, commentPost),
+      buildActionsButtons(unlikePost, likePost, userLikePost, showCommentInput),
     ]);
   }
 }

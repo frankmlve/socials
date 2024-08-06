@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:socials/data/model/assets.dart';
-import 'package:socials/data/model/comment.dart';
-import 'package:socials/data/model/like.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/assets.dart';
+import 'package:socials/domain/model/comment.dart';
+import 'package:socials/domain/model/like.dart';
+import 'package:socials/domain/model/user.dart';
 
 class Post  {
   String id;

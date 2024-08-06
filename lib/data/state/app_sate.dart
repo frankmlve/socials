@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socials/data/model/post.dart';
+import 'package:socials/domain/model/post.dart';
 import 'package:socials/domain/repository/post_repository.dart';
 import 'package:socials/presentation/manager/auth/auth.dart';
 

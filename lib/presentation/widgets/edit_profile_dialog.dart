@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socials/data/model/user.dart';
+import 'package:socials/domain/model/user.dart';
 import 'package:socials/domain/repository/user_repository.dart';
 
 class EditProfileDialog extends StatelessWidget {
